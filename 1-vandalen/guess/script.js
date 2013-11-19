@@ -2,13 +2,35 @@
 
 window.onload = function(){
 	
-	var secret = 50; // Detta tal behöver bytas ut mot ett slumpat tal.
+	var secret; // Detta tal behöver bytas ut mot ett slumpat tal.
 	
 	// I denna funktion ska du skriva koden för att hantera "spelet"
-	var guess = function(number){
-		console.log("Det hemliga talet: " + secret); // Du når den yttre variabeln secret innifrån funktionen.
-		console.log("Du gissade: " + number); // Detta nummer är det som användaren gissade på.
-			
+	
+	    
+
+	
+	    var guess = function(number){
+	        if(number === parseInt(console.log))
+	        {   
+	            var secret=Math.random()*10;
+	            secret = Math.round(secret);
+	            if(number === secret)
+	            {
+	                console.log("Du gissade rätt");
+	            }
+	            else
+	            {
+	                console.log("Du gissade fel");
+	            }
+		        console.log("Det hemliga talet: " + secret); // Du når den yttre variabeln secret innifrån funktionen.
+		        console.log("Du gissade: " + number); // Detta nummer är det som användaren gissade på.
+	
+	        }
+	        else
+	        {
+	             console.log("du gissade inte ett heltal mellan 0 och 10, försök igen");
+             }
+             return number;
 		// Plats för förändring.
 
 

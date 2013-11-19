@@ -2,13 +2,11 @@
 
 window.onload = function(){
 
+	var moment;
 	
-	var birthday = function(date){
-		
-
-
-			// Din kod här.
-
+    
+    birthday(input.value) = moment([2014, 7, 17]).fromNow();
+    return  moment;
 
 
 

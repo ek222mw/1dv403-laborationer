@@ -7,10 +7,17 @@ window.onload = function(){
 		// Plats för förändring.		
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
-	
-
-
-
+	if(input.value === parseint(console.log))
+	{
+        
+        txt =   String.format(input.value);
+        var txt = str;
+        return str;
+	}
+	else
+	{
+	    console.log("fel")
+	}
 
 
 
