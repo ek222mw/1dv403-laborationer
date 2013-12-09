@@ -1,0 +1,7 @@
+ /* Body Attribut */
+    body{font-family:times; font-size:16px; background-color:gray;}
+    /* Kontainer attribut */
+#container ul{width: 12em; margin: 0; padding: 0;solid: #ffffff;}
+#container li{list-style: none; padding: 0.2em 0.1em;}
+#container ul a{text-decoration: none; padding:0; margin:0;}
+h1{font-size: 24px; color:Red;}

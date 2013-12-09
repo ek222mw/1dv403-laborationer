@@ -7,18 +7,30 @@ window.onload = function(){
 		// Plats för förändring.		
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
-	if(input.value === parseint(console.log))
+		var txt = "";
+	if(str.length < 1)
 	{
-        
-        txt =   String.format(input.value);
-        var txt = str;
-        return str;
-	}
-	else
-	{
-	    console.log("fel")
+	    return "fel, du måste skriva något."
 	}
 
+	    for(var char in str)
+	    {
+    	    if(str[char] === "A" || str[char] === "a")
+    	    {
+    	        txt += "#";
+    	    }
+    	    else if(str[char] === str[char].toLowerCase())
+    	    {
+    	        txt += str[char].toUpperCase();
+    	    }
+    	    else if(str[char] === str[char].toUpperCase())
+    	    {
+    	        txt += str[char].toLowerCase();
+    	    }
+    	    console.log(txt);
+	    }
+	  
+    return txt;
 
 
 	};

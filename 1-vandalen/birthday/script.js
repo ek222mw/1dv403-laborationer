@@ -1,16 +1,45 @@
 "use strict";
 
-window.onload = function(){
+window.onload = function()
+{
+    var birthday = function(date)
+    {
+    date = new Date();
+var today = new Date();
+console.log(today);
+var birthdays = new Date(input.value);
+console.log(birthdays);
+if(birthdays.getTime() < today.getTime())
+{
+    birthdays.setFullYear((today.getFullYear()+1));
+}
+var msPerday = 24*60*60*1000;
+var timeleft = (birthdays.getTime()- today.getTime());
+var e_daysleft = timeleft / msPerday;
+var daysleft = Math.floor(e_daysleft);
 
-	var moment;
+daysleft = daysleft +1;
+if(daysleft === 0)
+{
+    return daysleft;
+}
+if(daysleft === 365)
+{
+    return 0;
+}
+if( daysleft > 0)
+{
+    return Math.abs(daysleft);
+}
+else
+{
+    return Math.abs(daysleft +365);
+}
+return daysleft;
+
+
+}
 	
-    
-    birthday(input.value) = moment([2014, 7, 17]).fromNow();
-    return  moment;
-
-
-
-	};
 	// ------------------------------------------------------------------------------
 
 
@@ -26,7 +55,7 @@ window.onload = function(){
 		p.classList.remove( "error");
 
 		try {
-			var answer = birthday(input.value) // Läser in texten från textrutan och skickar till funktionen "convertString"
+			var answer = birthday(input.value); // Läser in texten från textrutan och skickar till funktionen "convertString"
 			var message;
 			switch (answer){
 				case 0: message = "Grattis på födelsedagen!";
@@ -44,7 +73,6 @@ window.onload = function(){
 		}
 	
 	});
-
 
 
 };
