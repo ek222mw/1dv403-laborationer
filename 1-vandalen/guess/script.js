@@ -30,7 +30,7 @@ window.onload = function(){
 	        }
 	        if(+number === secret)
 	        {
-	            return [true, "Grattis du vann! Det hemliga talet var"+secret+" och du behövde"+count+" gissningar för att hitta det."];
+	            return [true, "Grattis du vann! Det hemliga talet var "+secret+" och du behövde "+count+" gissningar för att hitta det."];
 	        }
 
 		// Plats för förändring.
