@@ -10,12 +10,13 @@ var Memory =
     checkArray: [],
     clickcounter: 0,
     paircounter: 0,
+    firstClick: null,
     
     
     init: function(e)
     {
         Memory.memoryArray = RandomGenerator.getPictureArray(Memory.rows, Memory.cols);
-        console.log(Memory.memoryArray);
+       
         
         
         var content = document.getElementById("content");
@@ -46,15 +47,24 @@ var Memory =
         a.appendChild(img);
         content.appendChild(a);
         
-       
+        
         a.onclick = function()
-        {
+        {console.log(Memory.clickcounter);
            
             
-            if(Memory.clickcounter === 2){
-                //Memory.myFunction;
-                return;
+            if(Memory.clickcounter >= 2){
                 
+                Memory.clickcounter = 0;
+                console.log("hej");
+                return false;
+                
+            }
+            if(Memory.clickcounter == 0){
+                Memory.firstClick = this;
+            }
+            if(this == Memory.firstClick && Memory.clickcounter > 0){
+                
+                return false;
             }
             
             Memory.flipp(id, img);
@@ -67,10 +77,14 @@ var Memory =
         img.setAttribute("src", "pics/" + id + ".png");
         Memory.checkArray.push(img);
         
+        
+        console.log(img);
+        
         if(Memory.checkArray.length === 2){
-            console.log(Memory.checkArray[0].getAttribute("src")); 
-            if(Memory.checkArray[0].getAttribute("src") === Memory.checkArray[1].getAttribute("src")){
-                console.log("lika");
+            console.log(Memory.checkArray[0].getAttribute("src"), Memory.checkArray[1].getAttribute("src")); 
+            if(Memory.checkArray[0].getAttribute("src") === Memory.checkArray[1].getAttribute("src"))
+              {  console.log("lika");
+              
                 Memory.paircounter++;
                 var pair_count = document.getElementById("counter");
                 pair_count.innerHTML = "<p>" + "Antal Par:" + "</p>"+ "<p>" + Memory.paircounter + "</p>";
@@ -82,6 +96,7 @@ var Memory =
                     Memory.checkArray[0].setAttribute("src", "pics/0.png");
                     Memory.checkArray[1].setAttribute("src", "pics/0.png");
                     Memory.checkArray.length = 0;
+
                 }, 1000);
                 
                 
@@ -93,12 +108,11 @@ var Memory =
                      ptagg.innerHTML = "Du vann!";
                      div.appendChild(ptagg);
                 }
-            Memory.clickcounter = 0;
             
             
         }
-        
        
+    
     }
     
 }
