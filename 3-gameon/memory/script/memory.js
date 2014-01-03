@@ -48,17 +48,30 @@ var Memory =
         content.appendChild(a);
         
         
+            Memory.flipp(id, img, a);
+        
+        
+    },
+    flipp: function(id, img, a)
+    {
+        
         a.onclick = function()
-        {console.log(Memory.clickcounter);
+        {
+            
+            if(this.getElementsByTagName("img")[0].getAttribute("src") === "pics/0.png")
+            {
+        
+            console.log(Memory.clickcounter);
            
             
-            if(Memory.clickcounter >= 2){
+            if(Memory.clickcounter === 2){
                 
                 Memory.clickcounter = 0;
                 console.log("hej");
-                return false;
                 
             }
+            }
+        }
             if(Memory.clickcounter == 0){
                 Memory.firstClick = this;
             }
@@ -66,13 +79,9 @@ var Memory =
                 
                 return false;
             }
-            
-            Memory.flipp(id, img);
-        }
         
-    },
-    flipp: function(id, img)
-    {
+        
+        
         Memory.clickcounter++
         img.setAttribute("src", "pics/" + id + ".png");
         Memory.checkArray.push(img);
@@ -111,9 +120,8 @@ var Memory =
             
             
         }
-       
     
-    }
+        }
     
 }
 window.onload = Memory.init;

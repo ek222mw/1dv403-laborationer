@@ -57,3 +57,30 @@ h1{font-size: 24px; color:Red;}
 input[type="submit"]{background-color:orange;}
 .OK{background-color:green;}
 .Error{background-color:red;}
+#popup {
+    position:fixed;
+    top: 20%;
+    left:30%;
+    width:40%;
+    background:white;
+    z-index:99999;
+}
+
+#modalpop{
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:99999;
+    
+    background-color:black; 
+    opacity: 0.7;
+    
+}
+
+span {
+    display:list-item;
+    list-style:none;
+}
+
