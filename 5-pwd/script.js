@@ -32,6 +32,7 @@ var pwd =
         var modalpop = document.createElement("div");
         var divpopup = document.createElement("div");
         var h2 = document.createElement("h2");
+        
 
         divpopup.id = "popup";
         modalpop.id = "modalpop";
@@ -48,7 +49,10 @@ var pwd =
         divpopup.appendChild(close);
         // Slänger slutligen in hela popupen efter i main.
         main.parentNode.insertBefore(divpopup, main.nextSibling);
+        var url = "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/";
+        var myCallback = function(data){alert("hej");}
         
+        new Ajax(url,myCallback);
         close.onclick = function()
         {
             divpopup.remove();
