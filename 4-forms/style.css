@@ -61,8 +61,9 @@ input[type="submit"]{background-color:orange;}
     position:fixed;
     top: 20%;
     left:30%;
-    width:40%;
-    background:white;
+    width:400px;
+    height:200px;
+    background:#B3C2E1;
     z-index:99999;
 }
 
@@ -73,7 +74,6 @@ input[type="submit"]{background-color:orange;}
     left:0;
     right:0;
     z-index:99999;
-    
     background-color:black; 
     opacity: 0.7;
     
@@ -82,5 +82,19 @@ input[type="submit"]{background-color:orange;}
 span {
     display:list-item;
     list-style:none;
+    top:50%;
+}
+#submit2{
+    background-color:green;
+}
+#cancel{
+    background-color:red;
+}
+#h2{
+    font-size:20px;
+    color:blue;
+}
+.lname{
+    top:50px;
 }
 

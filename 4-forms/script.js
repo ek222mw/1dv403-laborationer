@@ -184,7 +184,7 @@ init: function(id)
 
         divpopup.id = "popup";
         modalpop.id = "modalpop";
-        
+        h2.id = "h2";
         main.appendChild(modalpop);
         
         divpopup.appendChild(h2);
@@ -207,7 +207,9 @@ init: function(id)
 
         // Skapar en Bekräfta och Avbryt-knapp.
         var submit2 = document.createElement("button");
+        submit2.id = "submit2";
         var close = document.createElement("button");
+        close.id = "cancel";
         submit2.appendChild(document.createTextNode("Bekräfta"));
         close.appendChild(document.createTextNode("Avbryt"));
         divpopup.appendChild(submit2);
