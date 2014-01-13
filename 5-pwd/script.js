@@ -4,7 +4,7 @@ var pwd =
     
     
     
-    
+    /*Sätter dagens datum i Main Id. */
     init: function()
     {
       document.getElementById("date").innerHTML = formatAMPM();
@@ -21,20 +21,16 @@ var pwd =
         var strTime = date + ' ' + hours + ':' + minutes + ' ' + ampm;
         return strTime;
         }   
+         /*Hämtar knappen som ska öppna popup fönstret och skapar sedan en onclick funktion på denna. */
     var popup = document.getElementById("newpopup");
     
-     popup.onclick = function(){
+     popup.onclick = function()
+     {
           {
-                
             pwd.popupWindow();
             return false;
           }
-          
-    
-    
-    
-    
-     }
+     };
     
 },
 // Modal-popupfönster som visar bilder.
@@ -51,8 +47,7 @@ var pwd =
         var popupimg = document.createElement("img");
         var clock = document.createElement("div");
         
-        console.log(divpopup);
-
+         /*Sätter id på variblerna */
         divpopup.id = "popup";
         modalpop.id = "modalpop";
         divpopupbild.id ="divpopupbild";
@@ -61,23 +56,20 @@ var pwd =
         h2.id ="h2";
         popupimg.id ="popupimg";
         clock.id ="clock";
+        
+        /*lägger de olika variablerna i rätt divar. */
         main.appendChild(modalpop);
         main.appendChild(clock);
-         
-        
-        
-        
-        img.setAttribute("src", "pics/ajax-loader.gif");
-        popupimg.setAttribute("src","pics/thumbnail.gif");
-        divtop.appendChild(h2);
+        divtop.appendChild(h2); 
         h2.appendChild(document.createTextNode("Image Viewer"));
         divtop.appendChild(popupimg);
-        
-        
         divpopup.appendChild(img);
         divpopup.appendChild(divpopupbild);
-        console.log(img);
-
+        
+         /*sätter attribut på variablerna. */
+        img.setAttribute("src", "pics/ajax-loader.gif");
+        popupimg.setAttribute("src","pics/thumbnail.gif");
+        
         // Skapar X-knapp.
         var close = document.createElement("button");
         divtop.appendChild(close);
@@ -87,9 +79,11 @@ var pwd =
         // Slänger slutligen in hela popupen efter i main.
         main.parentNode.insertBefore(divpopup, main.nextSibling);
         main.parentNode.insertBefore(divtop, main.nextSibling);
+        
+         /*Skapar en url som anger position där den ska hämta information och skapar sedan en funktion
+         som tolkar svaret från ajax genom en json.parse. Sedan så skapas variabler som ska ändra storlek
+         på tumnagelbildernas ramar till den största tumnagelbildens.*/
         var url = "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/";
-        
-        
         var myCallback = function(data){
             var imagesarray = [];
             imagesarray = JSON.parse(data);
@@ -100,19 +94,19 @@ var pwd =
             console.log("höjd",thumbHeight);
             var thumbWidth = thumbSize.width;
             console.log("bredd",thumbWidth);
-        for(var i = 0; i<imagesarray.length; i++)
-        {
-           changeimage(imagesarray,i, thumbWidth,thumbHeight);
+            
+            for(var i = 0; i<imagesarray.length; i++)
+            {
+                changeimage(imagesarray,i, thumbWidth,thumbHeight);
            
             
-        }
+            }
         };
-        
+         /*Funktion som ändrar skrivbordsbakgrund till den tumnagelbild man klickar på. */
         var changeimage = function(imagesarray,i,thumbWidth,thumbHeight)
         {
              var klickimg = document.createElement("a");
              console.log("bredd2",thumbWidth,"höjd2", thumbHeight);
-            klickimg.setAttribute("href","#","width",thumbWidth,"height", thumbHeight);
             var loadedimg = document.createElement("img");
             klickimg.className = "atag";
             loadedimg.className = "imgtag";
@@ -120,16 +114,20 @@ var pwd =
             loadedimg.id="imgtagg";
             klickimg.appendChild(loadedimg);
             divpopup.appendChild(klickimg);
-            loadedimg.setAttribute("src", imagesarray[i].thumbURL);
             klickimg.style.height = thumbHeight + "px";
-            klickimg.style.width = thumbWidth + "px;";
+            klickimg.style.width = thumbWidth + "px";
+            klickimg.setAttribute("href","#","width",thumbWidth,"height", thumbHeight);
+            loadedimg.setAttribute("src", imagesarray[i].thumbURL);
+            console.log(klickimg);
+            
             
             klickimg.onclick = function()
             {
                 var body = document.getElementById("body");
                 body.style.backgroundImage = "url(" + imagesarray[i].URL + ")";
-            }
-        }
+            };
+        };
+         /*Funktion som gör en uträkning av ramen till tumnagelbilderna och sedan returnerar de värdena. */
         var maxWidthHeightThumb = function(imagesarray)
         {
             var width = 0;
@@ -151,24 +149,18 @@ var pwd =
                 height:height
             };
             
-        }
+        };
         
-        
-        
-        
+         /*Gör anrop till ajax.js AjaxCon funktion som sedan hämtar informationen på servern. */
         new AjaxCon(url,myCallback);
         
+         /*Stänger popup fönster. */
         close.onclick = function()
         {
             divpopup.remove();
             modalpop.remove();
             divtop.remove();
         };
-       
-        
-        
     }
-    
-
-}
+};
 window.onload = pwd.init;
