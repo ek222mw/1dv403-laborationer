@@ -93,14 +93,9 @@ var Memory =
                 Memory.checkArray.length = 0;
                 
             }else{
-                setTimeout(function() {
-                    console.log(Memory.checkArray);
-                    Memory.checkArray[0].setAttribute("src", "pics/0.png");
-                    Memory.checkArray[1].setAttribute("src", "pics/0.png");
-                    Memory.checkArray.length = 0;
-
-                }, 1000);
                 
+                Memory.flippBack(Memory.checkArray[0], Memory.checkArray[1]);
+                Memory.checkArray.length = 0;
                 
             }
             if(Memory.paircounter === Memory.memoryArray.length/2)
@@ -115,7 +110,13 @@ var Memory =
         }
        
     
+    },
+    flippBack: function(pic1, pic2)
+    {
+        setTimeout(function() {
+                    pic1.setAttribute("src", "pics/0.png");
+                    pic2.setAttribute("src", "pics/0.png");
+                }, 1000);
     }
-    
 }
 window.onload = Memory.init;
