@@ -1,7 +1,7 @@
 "use strict";
 var Forms =
 {
- 
+     /*Skapar taggar som är falska. */ 
      fornamn: false,
      efternamn: false,
      postnummer: false,
@@ -10,58 +10,54 @@ var Forms =
  
 init: function(id)
 {
-
+     /*Hämtar iden på taggar. */
      var submit =  document.getElementById("genomfor_kop");
      var fname = document.getElementById("Fornamn");
      var Postadress = document.getElementById("Postadress");
      var Email = document.getElementById("mail");
-
-
-        var sname = document.getElementById("Efternamn");
+     var sname = document.getElementById("Efternamn");
 
       /*
      -------FÖRNAMN-------------
      */
      
+     /*Skapar en blur funktion i inmatningsfältet */
      fname.onblur = function()
      {
+         /*Lägger till ett regex som gör att du måste mata in något i fältet annars blir det rött. */
          var corrfname = /^\s*\S+.*/;
          var Validatingfname = fname.value.match(corrfname);
-         
-
          
          if(Validatingfname === null)
          {
             fname.classList.add("Error");
             fname.classList.remove("OK");
-                        Forms.fornamn = false;
-                        return Forms.fornamn;
-
-
+            Forms.fornamn = false;
+            return Forms.fornamn;
+            
          }
          else if(Validatingfname.length > 0)
          {
             fname.classList.remove("Error");
             fname.classList.add("OK");
             Forms.fornamn = true;
-                                                                                     console.log(Forms.fornamn)
-
             return Forms.fornamn;
          }
      };
      
-
-        sname.onblur = function(){
+    /*Skapar en blur funktion i inmatningsfältet */
+    sname.onblur = function()
+    {
+        /*Lägger till ett regex som gör att du måste mata in något i fältet annars blir det rött. */
         var corrsname = /^\s*\S+.*/;
-     
         var Validatingsname = sname.value.match(corrsname);
 
             if(Validatingsname === null)
             {
              sname.classList.add("Error");
              sname.classList.remove("OK");
-                                         Forms.efternamn = false;
-                                                                     return Forms.efternamn;
+             Forms.efternamn = false;
+             return Forms.efternamn;
 
             }
       
@@ -69,109 +65,94 @@ init: function(id)
             {
                 sname.classList.remove("Error");
                 sname.classList.add("OK");
-                            Forms.efternamn = true;
-                                                                                                     console.log(Forms.efternamn)
-
-                            return Forms.efternamn;
+                Forms.efternamn = true;
+                return Forms.efternamn;
 
             }
-        }  
+        };
     
      
      /*
      -------Postadress-------------
      */
      
-     //Postadress = Postadress.value;
-     
-        Postadress.onblur = function(){
-            
+        /*Skapar en blur funktion i inmatningsfältet */
+        Postadress.onblur = function()
+        {
+            /*Skapar ett regex som gör att du måste mata in siffror och den ersätter se, white space och - med
+            att den slår ihop dessa med siffrorna efter. */
             var Postadressvalue = Postadress.value;
             var corrPostdress = /^\d{5}$/;
 
-            
             var replacedpostadress = Postadressvalue.replace(/\D/g, "");
-            
             Postadress.value = replacedpostadress;
             
-            
-
             if(!corrPostdress.test(Postadress.value))
             {   
                 Postadress.classList.add("Error");
                 Postadress.classList.remove("OK");
-                                            Forms.postnummer = false;
-                                                                                                         return Forms.postnummer;
+                Forms.postnummer = false;
+                return Forms.postnummer;
 
 
             }
+            
             if(corrPostdress.test(Postadress.value))
             {
                 Postadress.classList.remove("Error");
                 Postadress.classList.add("OK");
-                           Forms.postnummer = true;
-                                                                                                    console.log(Forms.postnummer)
-
-                                                                                         return Forms.postnummer;
+                Forms.postnummer = true;
+                return Forms.postnummer;
 
             }   
-     }
+     };
      
      /*
      -------Email-------------
      */
      
-        Email.onblur = function(){
+    /*Skapar en blur funktion i inmatningsfältet */
+    Email.onblur = function()
+    {
+            /*Skapar en regex som gör att du måste skriva en korrekt epost adress för att fältet inte ska bli rött. */
             var corrEpost = /\S+@\S+\.\S+/;
             
             if(!corrEpost.test(Email.value))
             {
                  Email.classList.add("Error");
                  Email.classList.remove("OK");
-                                                             Forms.emailadress = false;
-                                                                                                                          return Forms.emailadress;
-
-
+                 Forms.emailadress = false;
+                 return Forms.emailadress;
             }
             if(corrEpost.test(Email.value))
             {
                 Email.classList.remove("Error");
                 Email.classList.add("OK");
-                                                             Forms.emailadress = true;
-                                                                         console.log(Forms.emailadress)
-
-                                                             return Forms.emailadress;
+                Forms.emailadress = true;
+                return Forms.emailadress;
             
             }
-        }
+        };
 
-
-
-
-
-          submit.onclick = function(){
-          if((Forms.fornamn && Forms.efternamn && Forms.postnummer && Forms.emailadress) === true){
-                console.log(fname)
-                console.log(sname)
-                console.log(Email)
-                console.log(Postadress)
-            Forms.popupWindow(fname, sname, Postadress, Email);
-            return false;
-          }
-          else{
-              return false;
-          }
-      }
+        submit.onclick = function()
+        {
+            if((Forms.fornamn && Forms.efternamn && Forms.postnummer && Forms.emailadress) === true)
+            {
+                Forms.popupWindow(fname, sname, Postadress, Email);
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+      };
 },
       
       
-        // Modal-popupfönster som bekräftar köpet en gång till.
-    popupWindow: function(fname, sname, Postadress, Email){
-                        console.log(fname)
-                console.log(sname)
-                console.log(Email)
-                console.log(Postadress)
-        // Skapar de olika elementen som representerar popupfönstret.
+       /* Modal-popupfönster som bekräftar köpet en gång till. */
+    popupWindow: function(fname, sname, Postadress, Email)
+    {
+        /*Skapar de olika elementen som visas i popupfönstret. */
         var main = document.querySelector("#container");
         var modalpop = document.createElement("div");
         var divpopup = document.createElement("div");
@@ -228,6 +209,6 @@ init: function(id)
             modalpop.remove();
         };
     }
-}
+};
   
 window.onload = Forms.init;

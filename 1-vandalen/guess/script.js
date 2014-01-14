@@ -5,29 +5,40 @@ window.onload = function(){
 	var secret; // Detta tal behöver bytas ut mot ett slumpat tal.
 
 	// I denna funktion ska du skriva koden för att hantera "spelet"
-		secret = Math.floor( Math.random() * (100-1)+1) + 1;
-	   console.log(secret);
-	    var count = 0;
-        
 	
+        /* slumpar fram det hemliga talet*/
+		secret = Math.floor( Math.random() * (100-1)+1) + 1;
+	    var count = 0;
+	    
+        /* Skapar en funktion där man gissar efter det hemliga talet.
+        Om talet är mindre än 1 och större än 100 så är det utanför intervallet*/
 	    var guess = function(number){
 	        count += 1;
 	        if(number < 1 || number >100)
 	        {   
 	            return  [false, "Talet är utanför intervallet 0 - 100"];
 	        }
+	        
+	        /* det inmatade värde är inte ett nummer */
 	        if(isNaN(number))
 	        {
 	            return [false,"det du skrev är inte ett nummer"];
 	        }
+	        
+	        /* Jämför om numret du matar in är större än det hemliga talet så
+	        får du ett svar att det är lägre*/
 	        if(number > secret)
 	        {
 	            return  [false, "Det hemliga talet är lägre!"];
 	        }
+	        
+	        /* Tvärtom om man kollar på föregående jämförelse*/
 	        if(number < secret)
 	        {
 	            return  [false, "Det hemliga talet är högre!"];
 	        }
+	        /* slutligen om det inmatade värdet är lika det hemliga så returneras true,
+	        samt ett meddelande */
 	        if(+number === secret)
 	        {
 	            return [true, "Grattis du vann! Det hemliga talet var "+secret+" och du behövde "+count+" gissningar för att hitta det."];

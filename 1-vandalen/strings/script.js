@@ -7,22 +7,28 @@ window.onload = function(){
 		// Plats för förändring.		
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
+		
 		var txt = "";
-	if(str.length < 1)
-	{
-	    return "fel, du måste skriva något."
-	}
-
-	    for(var char in str)
+		/* Om strängens längd är mindre än 0 så returnera fel*/
+	    if(str.length < 1)
 	    {
+	        return "fel, du måste skriva något."
+	    }
+        /* for sats som kör varje bokstav i strängen*/
+	    for(var char in str)
+	    {   /* Kollar om tecket är stor och liten av bokstav av samma
+	    så lägg till #*/
     	    if(str[char] === "A" || str[char] === "a")
     	    {
     	        txt += "#";
+    	        console.log("hej",txt);
     	    }
+    	    /* Gör om liten till stor bokstav */
     	    else if(str[char] === str[char].toLowerCase())
     	    {
     	        txt += str[char].toUpperCase();
     	    }
+    	    /* Gör om stor til liten bokstav*/
     	    else if(str[char] === str[char].toUpperCase())
     	    {
     	        txt += str[char].toLowerCase();
